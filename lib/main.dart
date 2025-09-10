@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_ticket_app/domain/usecases/get_survey_by_id.dart';
+import 'package:mobile_ticket_app/presentation/pages/dashboard_page.dart';
 import 'package:mobile_ticket_app/presentation/pages/home_page.dart';
 import 'package:mobile_ticket_app/presentation/pages/survey_page.dart';
 
@@ -75,9 +76,13 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'User & Survey App',
         debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          splashFactory: NoSplash.splashFactory,
+          highlightColor: Colors.transparent,
+        ),
         initialRoute: '/',
         routes: {
-          '/': (context) => const HomePage(),
+          '/': (context) => const DashboardPage(),
           '/user': (context) => const UserPage(),
           '/create-user': (context) => const UserFormPage(),
           '/surveys': (context) => const SurveyPage(),

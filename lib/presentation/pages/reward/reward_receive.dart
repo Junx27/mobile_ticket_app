@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:mobile_ticket_app/presentation/pages/dashboard_page.dart';
+import 'package:mobile_ticket_app/presentation/widget/slider_page_route.dart';
 
 class RewardReceive extends StatelessWidget {
   const RewardReceive({super.key});
@@ -46,10 +47,7 @@ class RewardReceive extends StatelessWidget {
                   onPressed: () {
                     Navigator.pushReplacement(
                       context,
-                      PageRouteBuilder(
-                        pageBuilder: (_, __, ___) =>
-                            DashboardPage(initialIndex: 0),
-                      ),
+                      SlidePageRoute(page: DashboardPage(initialIndex: 0)),
                     );
                   },
                   icon: const Icon(Icons.arrow_back, color: Colors.black),
@@ -135,9 +133,7 @@ class RewardReceive extends StatelessWidget {
             onPressed: () {
               Navigator.pushReplacement(
                 context,
-                PageRouteBuilder(
-                  pageBuilder: (_, __, ___) => DashboardPage(initialIndex: 0),
-                ),
+                SlidePageRoute(page: DashboardPage(initialIndex: 0)),
               );
             },
             style: ElevatedButton.styleFrom(

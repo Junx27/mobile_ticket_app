@@ -5,6 +5,7 @@ import 'package:mobile_ticket_app/presentation/pages/dashboard_page.dart';
 import 'package:mobile_ticket_app/presentation/pages/menu_survey.dart';
 import 'package:mobile_ticket_app/presentation/pages/reward/reward_receive.dart';
 import 'package:mobile_ticket_app/presentation/pages/survey_page.dart';
+import 'package:mobile_ticket_app/presentation/widget/slider_page_route.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -235,23 +236,7 @@ class HomePage extends StatelessWidget {
                   itemBuilder: (context, index) {
                     final item = items[index];
                     return InkWell(
-                      onTap: () {
-                        Navigator.pushReplacement(
-                          context,
-                          PageRouteBuilder(
-                            pageBuilder: (_, __, ___) =>
-                                item['label'] == 'Data Survei'
-                                ? MenuSurvey()
-                                : item['label'] == 'Hadiah'
-                                ? RewardReceive()
-                                : DashboardPage(
-                                    initialIndex: item['route'] as int,
-                                  ),
-                            transitionDuration: Duration.zero,
-                            reverseTransitionDuration: Duration.zero,
-                          ),
-                        );
-                      },
+                      onTap: () => navigateMenuItem(context, item),
                       borderRadius: BorderRadius.circular(16),
                       child: Column(
                         children: [
@@ -356,5 +341,23 @@ int _mapRouteToIndex(String route) {
       return 3;
     default:
       return 0;
+  }
+}
+
+void navigateMenuItem(BuildContext context, Map<String, dynamic> item) {
+  if (item['label'] == 'Hadiah') {
+    Navigator.pushReplacement(context, SlidePageRoute(page: RewardReceive()));
+  } else if (item['label'] == 'Data Survei') {
+    Navigator.pushReplacement(context, SlidePageRoute(page: MenuSurvey()));
+  } else {
+    Navigator.pushReplacement(
+      context,
+      PageRouteBuilder(
+        pageBuilder: (_, __, ___) =>
+            DashboardPage(initialIndex: item['route'] as int),
+        transitionDuration: Duration.zero,
+        reverseTransitionDuration: Duration.zero,
+      ),
+    );
   }
 }

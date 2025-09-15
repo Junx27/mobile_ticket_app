@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile_ticket_app/domain/usecases/create_survey.dart';
 import 'package:mobile_ticket_app/domain/usecases/get_survey_by_id.dart';
 import 'package:mobile_ticket_app/presentation/pages/dashboard_page.dart';
 import 'package:mobile_ticket_app/presentation/pages/home_page.dart';
@@ -30,6 +32,12 @@ import 'presentation/bloc/survey_category/survey_category_event.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  // Memaksa aplikasi tetap portrait
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+
   runApp(const MyApp());
 }
 
@@ -51,6 +59,7 @@ class MyApp extends StatelessWidget {
     );
     final getSurveys = GetSurveys(surveyRepository);
     final getSurveyById = GetSurveyById(surveyRepository);
+    final createSurvey = CreateSurvey(surveyRepository);
 
     final surveyCategoryRemoteDataSource = SurveyCategoryRemoteDataSourceImpl();
     final surveyCategoryRepository = SurveyCategoryRepositoryImpl(
@@ -70,7 +79,8 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<SurveyBloc>(
           create: (_) =>
-              SurveyBloc(getSurveys, getSurveyById)..add(GetSurveysEvent()),
+              SurveyBloc(getSurveys, getSurveyById, createSurvey)
+                ..add(GetSurveysEvent()),
         ),
       ],
       child: MaterialApp(

@@ -14,30 +14,72 @@ class NavBar extends StatelessWidget {
       backgroundColor: Colors.white,
       selectedItemColor: Colors.orange,
       unselectedItemColor: Colors.black,
-      selectedLabelStyle: const TextStyle(
-        fontSize: 10, // ukuran label kecil saat dipilih
-      ),
-      unselectedLabelStyle: const TextStyle(
-        fontSize: 10, // ukuran label kecil saat tidak dipilih
-      ),
+      selectedLabelStyle: const TextStyle(fontSize: 10),
+      unselectedLabelStyle: const TextStyle(fontSize: 10),
       type: BottomNavigationBarType.fixed,
       items: [
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home_outlined), // ikon saat tidak dipilih
-          activeIcon: Icon(Icons.home), // ikon saat dipilih
-          label: "Home",
+        _buildItem(
+          index: 0,
+          currentIndex: currentIndex,
+          icon: Icons.article_outlined,
+          activeIcon: Icons.article_rounded,
+          label: "Beranda",
         ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.assignment_outlined),
-          activeIcon: Icon(Icons.assignment),
+        _buildItem(
+          index: 1,
+          currentIndex: currentIndex,
+          icon: Icons.assignment_outlined,
+          activeIcon: Icons.assignment,
           label: "Survey",
         ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.person_outline),
-          activeIcon: Icon(Icons.person),
-          label: "Profile",
+        _buildItem(
+          index: 2,
+          currentIndex: currentIndex,
+          icon: Icons.shop_2_outlined,
+          activeIcon: Icons.shop_2_rounded,
+          label: "Toko",
+        ),
+        _buildItem(
+          index: 3,
+          currentIndex: currentIndex,
+          icon: Icons.history_outlined,
+          activeIcon: Icons.history_rounded,
+          label: "Riwayat",
+        ),
+        _buildItem(
+          index: 4,
+          currentIndex: currentIndex,
+          icon: Icons.settings_outlined,
+          activeIcon: Icons.settings,
+          label: "Pengaturan",
         ),
       ],
+    );
+  }
+
+  BottomNavigationBarItem _buildItem({
+    required int index,
+    required int currentIndex,
+    required IconData icon,
+    required IconData activeIcon,
+    required String label,
+  }) {
+    final isActive = index == currentIndex;
+
+    return BottomNavigationBarItem(
+      icon: isActive
+          ? TweenAnimationBuilder<Offset>(
+              tween: Tween(begin: const Offset(0, 0.5), end: Offset.zero),
+              duration: const Duration(milliseconds: 300),
+              builder: (context, offset, child) {
+                return Transform.translate(
+                  offset: offset * 20,
+                  child: Icon(activeIcon),
+                );
+              },
+            )
+          : Icon(icon),
+      label: label,
     );
   }
 }

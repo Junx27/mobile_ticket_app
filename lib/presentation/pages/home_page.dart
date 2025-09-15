@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:gap/gap.dart';
+import 'package:mobile_ticket_app/presentation/pages/dashboard_page.dart';
+import 'package:mobile_ticket_app/presentation/pages/menu_survey.dart';
+import 'package:mobile_ticket_app/presentation/pages/reward/reward_receive.dart';
+import 'package:mobile_ticket_app/presentation/pages/survey_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -8,36 +12,12 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final items = [
-      {
-        'icon': 'assets/icons/user.png',
-        'label': 'Membership',
-        'route': '/user',
-      },
-      {
-        'icon': 'assets/icons/survey.png',
-        'label': 'Data Survei',
-        'route': '/surveys',
-      },
-      {
-        'icon': 'assets/icons/payment.png',
-        'label': 'Pembayaran',
-        'route': '/settings',
-      },
-      {
-        'icon': 'assets/icons/followers.png',
-        'label': 'Mengikuti',
-        'route': '/settings',
-      },
-      {
-        'icon': 'assets/icons/accounts.png',
-        'label': 'Kolaborator',
-        'route': '/user',
-      },
-      {
-        'icon': 'assets/icons/send-gift.png',
-        'label': 'Hadiah',
-        'route': '/surveys',
-      },
+      {'icon': 'assets/icons/user.png', 'label': 'Membership', 'route': 0},
+      {'icon': 'assets/icons/survey.png', 'label': 'Data Survei', 'route': 1},
+      {'icon': 'assets/icons/payment.png', 'label': 'Pembayaran', 'route': 2},
+      {'icon': 'assets/icons/followers.png', 'label': 'Mengikuti', 'route': 3},
+      {'icon': 'assets/icons/accounts.png', 'label': 'Kolaborator', 'route': 1},
+      {'icon': 'assets/icons/send-gift.png', 'label': 'Hadiah', 'route': 1},
     ];
 
     final sliderImages = [
@@ -49,6 +29,9 @@ class HomePage extends StatelessWidget {
       "assets/icons/after.jpg",
       "assets/icons/jendela.jpg",
       "assets/icons/cover.jpg",
+      "assets/icons/deep-cover.jpg",
+      "assets/icons/thor.jpg",
+      "assets/icons/inceptions.jpg",
     ];
 
     return Scaffold(
@@ -59,8 +42,32 @@ class HomePage extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(16),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // saldo box (tetap sama seperti kode kamu)
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Hi, Junx!',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12,
+                        ),
+                      ),
+                      Text(
+                        'Selamat bergabung dengan kami',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.normal,
+                          fontSize: 12,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
                 Container(
                   width: double.infinity,
                   height: 180,
@@ -97,9 +104,9 @@ class HomePage extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const Gap(10),
+                      const Gap(4),
                       const Text(
-                        'Rp. 1.000.000,00',
+                        'Rp. 999.999.999',
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
@@ -229,7 +236,21 @@ class HomePage extends StatelessWidget {
                     final item = items[index];
                     return InkWell(
                       onTap: () {
-                        Navigator.pushNamed(context, item['route'] as String);
+                        Navigator.pushReplacement(
+                          context,
+                          PageRouteBuilder(
+                            pageBuilder: (_, __, ___) =>
+                                item['label'] == 'Data Survei'
+                                ? MenuSurvey()
+                                : item['label'] == 'Hadiah'
+                                ? RewardReceive()
+                                : DashboardPage(
+                                    initialIndex: item['route'] as int,
+                                  ),
+                            transitionDuration: Duration.zero,
+                            reverseTransitionDuration: Duration.zero,
+                          ),
+                        );
                       },
                       borderRadius: BorderRadius.circular(16),
                       child: Column(
@@ -322,5 +343,18 @@ class HomePage extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+int _mapRouteToIndex(String route) {
+  switch (route) {
+    case '/surveys':
+      return 1;
+    case '/user':
+      return 2;
+    case '/payment':
+      return 3;
+    default:
+      return 0;
   }
 }

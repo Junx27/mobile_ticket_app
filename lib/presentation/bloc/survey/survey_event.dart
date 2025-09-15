@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:equatable/equatable.dart';
 
 abstract class SurveyEvent extends Equatable {
@@ -21,4 +23,23 @@ class GetSurveyByIdEvent extends SurveyEvent {
 
   @override
   List<Object?> get props => [id];
+}
+
+class CreateSurveyEvent extends SurveyEvent {
+  final String name;
+  final int price;
+  final String description;
+  final File imageFile; // ubah dari String ke File
+  final int categoryId;
+
+  CreateSurveyEvent({
+    required this.name,
+    required this.price,
+    required this.description,
+    required this.imageFile,
+    required this.categoryId,
+  });
+
+  @override
+  List<Object?> get props => [name, price, description, imageFile, categoryId];
 }

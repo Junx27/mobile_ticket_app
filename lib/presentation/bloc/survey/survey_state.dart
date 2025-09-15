@@ -39,3 +39,12 @@ class SurveyError extends SurveyState {
   @override
   List<Object?> get props => [message];
 }
+
+// survey_state.dart
+class SurveyCreated extends SurveyState {
+  final String message;
+  SurveyCreated(this.message);
+
+  @override
+  List<Object?> get props => [message];
+}

@@ -1,3 +1,4 @@
+import 'dart:io';
 import '../../domain/entities/survey.dart';
 import '../../domain/repositories/survey_repository.dart';
 import '../../data/sources/survey_remote_data_source.dart';
@@ -46,6 +47,36 @@ class SurveyRepositoryImpl implements SurveyRepository {
       );
     } catch (e) {
       throw Exception('Survey not found: $e');
+    }
+  }
+
+  @override
+  Future<Survey> createSurvey({
+    required String name,
+    required int price, // ✅ samakan dengan datasource
+    required String description,
+    required File imageFile, // ✅ bukan String
+    required int categoryId,
+  }) async {
+    try {
+      final e = await remoteDataSource.createSurvey(
+        name: name,
+        price: price,
+        description: description,
+        imageFile: imageFile, // ✅ pass sesuai param
+        categoryId: categoryId,
+      );
+
+      return Survey(
+        id: e.id,
+        name: e.name,
+        image: e.image,
+        price: e.price,
+        description: e.description,
+        category: e.category,
+      );
+    } catch (e) {
+      throw Exception('Failed to create survey: $e');
     }
   }
 }

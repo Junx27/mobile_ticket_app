@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_ticket_app/data/models/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../common/mapper/user_mapper.dart';
-import '../../domain/entities/user.dart';
-import '../../presentation/bloc/user/user_bloc.dart';
-import '../../presentation/bloc/user/user_state.dart';
+import '../../../common/mapper/user_mapper.dart';
+import '../../../domain/entities/user.dart';
+import '../../bloc/user/user_bloc.dart';
+import '../../bloc/user/user_state.dart';
 import 'user_form_page.dart';
 
 class UserPage extends StatefulWidget {

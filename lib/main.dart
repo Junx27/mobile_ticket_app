@@ -3,9 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_ticket_app/domain/usecases/create_survey.dart';
 import 'package:mobile_ticket_app/domain/usecases/get_survey_by_id.dart';
-import 'package:mobile_ticket_app/presentation/pages/dashboard_page.dart';
-import 'package:mobile_ticket_app/presentation/pages/home_page.dart';
-import 'package:mobile_ticket_app/presentation/pages/survey_page.dart';
+import 'package:mobile_ticket_app/presentation/pages/dashboard/dashboard_page.dart';
+import 'package:mobile_ticket_app/presentation/pages/home/home_page.dart';
+import 'package:mobile_ticket_app/presentation/pages/survey/survey_page.dart';
 
 import 'data/sources/user_remote_data_source.dart';
 import 'domain/repositories/user_repository_impl.dart';
@@ -13,8 +13,8 @@ import 'domain/usecases/get_users.dart';
 import 'domain/usecases/create_user.dart';
 import 'presentation/bloc/user/user_bloc.dart';
 import 'presentation/bloc/user/user_event.dart';
-import 'presentation/pages/user_form_page.dart';
-import 'presentation/pages/user_page.dart';
+import 'presentation/pages/user/user_form_page.dart';
+import 'presentation/pages/user/user_page.dart';
 
 // === Tambahan untuk Survey ===
 import 'data/sources/survey_remote_data_source.dart';

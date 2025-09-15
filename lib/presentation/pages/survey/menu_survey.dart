@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:mobile_ticket_app/presentation/pages/create_survey.dart';
-import 'package:mobile_ticket_app/presentation/pages/dashboard_page.dart';
+import 'package:mobile_ticket_app/presentation/pages/survey/create_survey.dart';
+import 'package:mobile_ticket_app/presentation/pages/dashboard/dashboard_page.dart';
 import 'package:mobile_ticket_app/presentation/pages/survey/filter_own_survey.dart';
+import 'package:mobile_ticket_app/presentation/widget/slider_page_route.dart';
 
 class MenuSurvey extends StatelessWidget {
   const MenuSurvey({super.key});
@@ -97,28 +98,9 @@ class MenuSurvey extends StatelessWidget {
                             IconButton(
                               icon: const Icon(Icons.filter_list, size: 20),
                               onPressed: () {
-                                Navigator.push(
+                                Navigator.pushReplacement(
                                   context,
-                                  PageRouteBuilder(
-                                    pageBuilder: (_, __, ___) =>
-                                        FilterOwnSurvey(),
-                                    transitionsBuilder:
-                                        (_, animation, __, child) {
-                                          const begin = Offset(1.0, 0.0);
-                                          const end = Offset.zero;
-                                          const curve = Curves.easeInOut;
-
-                                          var tween = Tween(
-                                            begin: begin,
-                                            end: end,
-                                          ).chain(CurveTween(curve: curve));
-
-                                          return SlideTransition(
-                                            position: animation.drive(tween),
-                                            child: child,
-                                          );
-                                        },
-                                  ),
+                                  SlidePageRoute(page: FilterOwnSurvey()),
                                 );
                               },
                             ),

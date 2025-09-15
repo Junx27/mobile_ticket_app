@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:gap/gap.dart';
-import 'package:mobile_ticket_app/presentation/pages/dashboard_page.dart';
-import 'package:mobile_ticket_app/presentation/pages/menu_survey.dart';
+import 'package:mobile_ticket_app/presentation/pages/dashboard/dashboard_page.dart';
+import 'package:mobile_ticket_app/presentation/pages/survey/menu_survey.dart';
+import 'package:mobile_ticket_app/presentation/pages/payment/menu_payment.dart';
 import 'package:mobile_ticket_app/presentation/pages/reward/reward_receive.dart';
-import 'package:mobile_ticket_app/presentation/pages/survey_page.dart';
+import 'package:mobile_ticket_app/presentation/pages/survey/survey_page.dart';
 import 'package:mobile_ticket_app/presentation/widget/slider_page_route.dart';
 
 class HomePage extends StatelessWidget {
@@ -349,6 +350,8 @@ void navigateMenuItem(BuildContext context, Map<String, dynamic> item) {
     Navigator.pushReplacement(context, SlidePageRoute(page: RewardReceive()));
   } else if (item['label'] == 'Data Survei') {
     Navigator.pushReplacement(context, SlidePageRoute(page: MenuSurvey()));
+  } else if (item['label'] == 'Pembayaran') {
+    Navigator.pushReplacement(context, SlidePageRoute(page: MenuPayment()));
   } else {
     Navigator.pushReplacement(
       context,

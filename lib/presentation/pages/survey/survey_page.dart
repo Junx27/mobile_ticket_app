@@ -5,9 +5,9 @@ import 'package:gap/gap.dart';
 import 'package:custom_refresh_indicator/custom_refresh_indicator.dart';
 import 'package:mobile_ticket_app/presentation/bloc/survey/survey_event.dart';
 import 'package:shimmer/shimmer.dart';
-import '../../domain/entities/survey.dart';
-import '../../presentation/bloc/survey/survey_bloc.dart';
-import '../../presentation/bloc/survey/survey_state.dart';
+import '../../../domain/entities/survey.dart';
+import '../../bloc/survey/survey_bloc.dart';
+import '../../bloc/survey/survey_state.dart';
 
 class SurveyPage extends StatelessWidget {
   const SurveyPage({super.key});

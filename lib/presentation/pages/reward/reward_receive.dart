@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:mobile_ticket_app/presentation/pages/dashboard_page.dart';
+import 'package:mobile_ticket_app/presentation/pages/dashboard/dashboard_page.dart';
 import 'package:mobile_ticket_app/presentation/widget/slider_page_route.dart';
 
 class RewardReceive extends StatelessWidget {
@@ -51,10 +51,7 @@ class RewardReceive extends StatelessWidget {
                     );
                   },
                   icon: const Icon(Icons.arrow_back, color: Colors.black),
-                  label: const Text(
-                    'Kembali',
-                    style: TextStyle(color: Colors.black),
-                  ),
+                  label: const Text('', style: TextStyle(color: Colors.black)),
                 ),
                 ListView.builder(
                   shrinkWrap: true,

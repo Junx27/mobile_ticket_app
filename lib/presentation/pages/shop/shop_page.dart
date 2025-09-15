@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:mobile_ticket_app/presentation/pages/survey_add_ons_description.dart';
+import 'package:mobile_ticket_app/presentation/pages/survey/survey_add_ons_description.dart';
 
 class ShopPage extends StatelessWidget {
   const ShopPage({super.key});

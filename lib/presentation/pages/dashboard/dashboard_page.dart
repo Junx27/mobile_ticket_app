@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_ticket_app/presentation/pages/history_page.dart';
-import 'package:mobile_ticket_app/presentation/pages/home_page.dart';
-import 'package:mobile_ticket_app/presentation/pages/setting_page.dart';
-import 'package:mobile_ticket_app/presentation/pages/shop_page.dart';
-import 'package:mobile_ticket_app/presentation/pages/survey_page.dart';
-import 'package:mobile_ticket_app/presentation/pages/user_page.dart';
+import 'package:mobile_ticket_app/presentation/pages/history/history_page.dart';
+import 'package:mobile_ticket_app/presentation/pages/home/home_page.dart';
+import 'package:mobile_ticket_app/presentation/pages/setting/setting_page.dart';
+import 'package:mobile_ticket_app/presentation/pages/shop/shop_page.dart';
+import 'package:mobile_ticket_app/presentation/pages/survey/survey_page.dart';
+import 'package:mobile_ticket_app/presentation/pages/user/user_page.dart';
 import 'package:mobile_ticket_app/presentation/widget/navbar.dart';
 
 class DashboardPage extends StatefulWidget {

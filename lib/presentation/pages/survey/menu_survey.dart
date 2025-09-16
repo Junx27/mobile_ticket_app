@@ -42,10 +42,18 @@ class MenuSurvey extends StatelessWidget {
                         child: Icon(Icons.arrow_back, size: 20),
                       ),
                       IconButton(
-                        icon: const Icon(
-                          Icons.add_circle,
-                          color: Colors.orange,
-                          size: 25,
+                        icon: ShaderMask(
+                          shaderCallback: (bounds) => const LinearGradient(
+                            colors: [Colors.orange, Colors.pink],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                          ).createShader(bounds),
+                          child: const Icon(
+                            Icons.add_circle,
+                            size: 30,
+                            color: Colors
+                                .white, // penting: tetap kasih warna putih biar gradient keliatan
+                          ),
                         ),
                         onPressed: () {
                           Navigator.push(

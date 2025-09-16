@@ -8,7 +8,7 @@ class SlidePageRoute<T> extends PageRouteBuilder<T> {
   SlidePageRoute({
     required this.page,
     this.begin = const Offset(1.0, 0.0),
-    this.duration = const Duration(milliseconds: 500),
+    this.duration = const Duration(milliseconds: 300),
   }) : super(
          pageBuilder: (_, __, ___) => page,
          transitionDuration: duration,

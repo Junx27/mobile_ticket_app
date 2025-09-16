@@ -273,7 +273,7 @@ class HomePage extends StatelessWidget {
                 ),
                 CarouselSlider(
                   options: CarouselOptions(
-                    height: 160,
+                    height: 180,
                     autoPlay: true,
                     autoPlayInterval: const Duration(seconds: 5),
                     enlargeCenterPage: false,

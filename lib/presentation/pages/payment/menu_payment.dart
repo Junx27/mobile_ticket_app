@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:mobile_ticket_app/presentation/bloc/payment/payment_bloc.dart';
+import 'package:mobile_ticket_app/presentation/bloc/payment/payment_state.dart';
 import 'package:mobile_ticket_app/presentation/pages/dashboard/dashboard_page.dart';
 import 'package:mobile_ticket_app/presentation/widget/slider_page_route.dart';
 
@@ -146,6 +149,48 @@ class MenuPayment extends StatelessWidget {
                             Text(
                               'Riwayat Transaksi',
                               style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            BlocBuilder<PaymentBloc, PaymentState>(
+                              builder: (context, state) {
+                                if (state is PaymentLoading) {
+                                  return const Center(
+                                    child: CircularProgressIndicator(),
+                                  );
+                                }
+
+                                if (state is PaymentLoaded) {
+                                  final transactions = state.transactions;
+
+                                  if (transactions.isEmpty) {
+                                    return const Center(
+                                      child: Text("Tidak ada transaksi."),
+                                    );
+                                  }
+
+                                  return ListView.builder(
+                                    shrinkWrap:
+                                        true, // ✅ biar nggak error constraint
+                                    itemCount: transactions.length,
+                                    itemBuilder: (context, index) {
+                                      final trx = transactions[index];
+                                      return ListTile(
+                                        title: Text(
+                                          trx.account_name ?? 'No Name',
+                                        ),
+                                        subtitle: Text(
+                                          '${trx.account_number ?? '-'} - ${trx.amount ?? 0}',
+                                        ),
+                                      );
+                                    },
+                                  );
+                                }
+
+                                if (state is PaymentError) {
+                                  return Center(child: Text(state.message));
+                                }
+
+                                return const SizedBox(); // default kosong
+                              },
                             ),
                           ],
                         ),

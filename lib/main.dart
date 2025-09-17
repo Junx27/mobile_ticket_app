@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile_ticket_app/data/sources/payment/payment_transaction_remote_data_source.dart';
+import 'package:mobile_ticket_app/domain/repositories/payment/payment_transaction_repository_impl.dart';
 import 'package:mobile_ticket_app/domain/usecases/create_survey.dart';
 import 'package:mobile_ticket_app/domain/usecases/get_survey_by_id.dart';
+import 'package:mobile_ticket_app/domain/usecases/payment/get_all_payment_transactions.dart';
+import 'package:mobile_ticket_app/presentation/bloc/payment/payment_bloc.dart';
+import 'package:mobile_ticket_app/presentation/bloc/payment/payment_event.dart';
 import 'package:mobile_ticket_app/presentation/pages/dashboard/dashboard_page.dart';
 import 'package:mobile_ticket_app/presentation/pages/home/home_page.dart';
 import 'package:mobile_ticket_app/presentation/pages/survey/survey_page.dart';
@@ -67,6 +72,14 @@ class MyApp extends StatelessWidget {
     );
     final getSurveyCategories = GetSurveyCategories(surveyCategoryRepository);
 
+    //payment
+    final paymentRemoteDataSource = PaymentTransactionRemoteDataSourceImpl();
+    final paymentRepository = PaymentTransactionRepositoryImpl(
+      remoteDataSource: paymentRemoteDataSource,
+    );
+    final getAllPaymentTransactions = GetAllPaymentTransactions(
+      paymentRepository,
+    );
     return MultiBlocProvider(
       providers: [
         BlocProvider<UserBloc>(
@@ -81,6 +94,10 @@ class MyApp extends StatelessWidget {
           create: (_) =>
               SurveyBloc(getSurveys, getSurveyById, createSurvey)
                 ..add(GetSurveysEvent()),
+        ),
+        BlocProvider<PaymentBloc>(
+          create: (_) =>
+              PaymentBloc(getAllPaymentTransactions)..add(GetPaymentEvent()),
         ),
       ],
       child: MaterialApp(

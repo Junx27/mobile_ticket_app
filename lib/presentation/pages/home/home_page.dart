@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:gap/gap.dart';
 import 'package:mobile_ticket_app/presentation/pages/dashboard/dashboard_page.dart';
+import 'package:mobile_ticket_app/presentation/pages/follower/follower.dart';
 import 'package:mobile_ticket_app/presentation/pages/survey/menu_survey.dart';
 import 'package:mobile_ticket_app/presentation/pages/payment/menu_payment.dart';
 import 'package:mobile_ticket_app/presentation/pages/reward/reward_receive.dart';
@@ -352,6 +353,10 @@ void navigateMenuItem(BuildContext context, Map<String, dynamic> item) {
     Navigator.pushReplacement(context, SlidePageRoute(page: MenuSurvey()));
   } else if (item['label'] == 'Pembayaran') {
     Navigator.pushReplacement(context, SlidePageRoute(page: MenuPayment()));
+  } else if (item['label'] == 'Mengikuti') {
+    final dashboardState = context
+        .findAncestorStateOfType<DashboardPageState>();
+    dashboardState?.replaceNavItem(0, 6);
   } else {
     Navigator.pushReplacement(
       context,

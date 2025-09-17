@@ -43,15 +43,19 @@ class RewardReceive extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                TextButton.icon(
+                IconButton(
+                  padding: EdgeInsets.zero,
+                  constraints: const BoxConstraints(),
+                  icon: const Icon(
+                    Icons.arrow_back,
+                    color: Colors.black,
+                    size: 20,
+                  ),
                   onPressed: () {
-                    Navigator.pushReplacement(
-                      context,
-                      SlidePageRoute(page: DashboardPage(initialIndex: 0)),
-                    );
+                    final dashboardState = context
+                        .findAncestorStateOfType<DashboardPageState>();
+                    dashboardState?.replaceNavItem(0, 0);
                   },
-                  icon: const Icon(Icons.arrow_back, color: Colors.black),
-                  label: const Text('', style: TextStyle(color: Colors.black)),
                 ),
                 ListView.builder(
                   shrinkWrap: true,
@@ -122,20 +126,19 @@ class RewardReceive extends StatelessWidget {
         padding: const EdgeInsets.only(
           left: 16,
           right: 16,
-          bottom: 50,
+          bottom: 16,
         ), // kasih padding biar tidak mepet
         child: SizedBox(
           width: double.infinity,
           child: ElevatedButton(
             onPressed: () {
-              Navigator.pushReplacement(
-                context,
-                SlidePageRoute(page: DashboardPage(initialIndex: 0)),
-              );
+              final dashboardState = context
+                  .findAncestorStateOfType<DashboardPageState>();
+              dashboardState?.replaceNavItem(0, 0);
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.orange,
-              padding: const EdgeInsets.symmetric(vertical: 12),
+              padding: const EdgeInsets.symmetric(vertical: 0),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8),
               ),

@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:mobile_ticket_app/presentation/pages/follower/follower.dart';
 import 'package:mobile_ticket_app/presentation/pages/history/history_page.dart';
 import 'package:mobile_ticket_app/presentation/pages/home/home_page.dart';
+import 'package:mobile_ticket_app/presentation/pages/payment/menu_payment.dart';
+import 'package:mobile_ticket_app/presentation/pages/reward/reward_receive.dart';
 import 'package:mobile_ticket_app/presentation/pages/setting/setting_page.dart';
 import 'package:mobile_ticket_app/presentation/pages/shop/shop_page.dart';
+import 'package:mobile_ticket_app/presentation/pages/survey/menu_survey.dart';
 import 'package:mobile_ticket_app/presentation/pages/survey/survey_page.dart';
 import 'package:mobile_ticket_app/presentation/pages/user/user_page.dart';
 import 'package:mobile_ticket_app/presentation/widget/navbar.dart';
@@ -34,6 +37,9 @@ class DashboardPageState extends State<DashboardPage> {
     SettingPage(), // index 4
     UserPage(), // index 5 (contoh tambahan)
     Follower(),
+    MenuSurvey(),
+    MenuPayment(),
+    RewardReceive(),
   ];
 
   // index yang muncul di navbar (bisa diubah dinamis)
@@ -43,7 +49,6 @@ class DashboardPageState extends State<DashboardPage> {
     2,
     3,
     4,
-    5,
   ]; // default: Home, Survey, Shop, History, Setting
 
   @override
@@ -87,8 +92,8 @@ class DashboardPageState extends State<DashboardPage> {
           );
         case 2:
           return const BottomNavigationBarItem(
-            icon: Icon(Icons.store_outlined),
-            activeIcon: Icon(Icons.store),
+            icon: Icon(Icons.shop_2_outlined),
+            activeIcon: Icon(Icons.shop_2_rounded),
             label: "Toko",
           );
         case 3:
@@ -111,8 +116,9 @@ class DashboardPageState extends State<DashboardPage> {
           );
         default:
           return const BottomNavigationBarItem(
-            icon: Icon(Icons.circle_outlined),
-            label: "Other",
+            icon: Icon(Icons.article_outlined),
+            activeIcon: Icon(Icons.article_rounded),
+            label: "Beranda",
           );
       }
     }).toList();

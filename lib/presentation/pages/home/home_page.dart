@@ -348,11 +348,17 @@ int _mapRouteToIndex(String route) {
 
 void navigateMenuItem(BuildContext context, Map<String, dynamic> item) {
   if (item['label'] == 'Hadiah') {
-    Navigator.pushReplacement(context, SlidePageRoute(page: RewardReceive()));
+    final dashboardState = context
+        .findAncestorStateOfType<DashboardPageState>();
+    dashboardState?.replaceNavItem(0, 9);
   } else if (item['label'] == 'Data Survei') {
-    Navigator.pushReplacement(context, SlidePageRoute(page: MenuSurvey()));
+    final dashboardState = context
+        .findAncestorStateOfType<DashboardPageState>();
+    dashboardState?.replaceNavItem(0, 7);
   } else if (item['label'] == 'Pembayaran') {
-    Navigator.pushReplacement(context, SlidePageRoute(page: MenuPayment()));
+    final dashboardState = context
+        .findAncestorStateOfType<DashboardPageState>();
+    dashboardState?.replaceNavItem(0, 8);
   } else if (item['label'] == 'Mengikuti') {
     final dashboardState = context
         .findAncestorStateOfType<DashboardPageState>();

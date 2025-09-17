@@ -52,16 +52,13 @@ class MenuPayment extends StatelessWidget {
                         constraints: const BoxConstraints(),
                         icon: const Icon(
                           Icons.arrow_back,
-                          color: Colors.white,
+                          color: Colors.black,
                           size: 20,
                         ),
                         onPressed: () {
-                          Navigator.pushReplacement(
-                            context,
-                            SlidePageRoute(
-                              page: DashboardPage(initialIndex: 0),
-                            ),
-                          );
+                          final dashboardState = context
+                              .findAncestorStateOfType<DashboardPageState>();
+                          dashboardState?.replaceNavItem(0, 0);
                         },
                       ),
                     ),

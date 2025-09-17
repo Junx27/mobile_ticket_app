@@ -29,17 +29,19 @@ class MenuSurvey extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  const DashboardPage(initialIndex: 0),
-                            ),
-                          );
+                      IconButton(
+                        padding: EdgeInsets.zero,
+                        constraints: const BoxConstraints(),
+                        icon: const Icon(
+                          Icons.arrow_back,
+                          color: Colors.black,
+                          size: 20,
+                        ),
+                        onPressed: () {
+                          final dashboardState = context
+                              .findAncestorStateOfType<DashboardPageState>();
+                          dashboardState?.replaceNavItem(0, 0);
                         },
-                        child: Icon(Icons.arrow_back, size: 20),
                       ),
                       IconButton(
                         icon: ShaderMask(
